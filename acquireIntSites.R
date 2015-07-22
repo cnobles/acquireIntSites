@@ -15,7 +15,7 @@ gtspid <- args[1]
 ##gtspid <- "GTSP0568" 
 
 if( is.na(gtspid) ) { 
-   message("Usage:\n\tRscript GTSP2BED.R GTSP####")  
+   message("Usage:\n\tRscript acquireSites.R GTSP####")  
    q(status=1) 
 } 
 
@@ -36,7 +36,7 @@ allSampleName <- suppressWarnings( dbGetQuery(dbConn, "SELECT * FROM samples") )
 replicates <- subset(allSampleName, grepl(paste0("^",gtspid), sampleName) ) 
 stopifnot( nrow(replicates)>0 ) 
 
-## get sampleInfo 
+## get sampleInfo from specimen_management table
 sql <- sprintf("SELECT * FROM specimen_management.gtsp WHERE SpecimenAccNum = '%s'", gtspid) 
 sampleInfo <- suppressWarnings( dbGetQuery(dbConn, sql) ) 
 stopifnot( nrow(sampleInfo)==1) 
