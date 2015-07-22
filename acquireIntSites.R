@@ -12,7 +12,8 @@ wideScreen <- function(howWide=as.numeric(strsplit(system('stty size', intern=T)
 ## get argument 
 args <- commandArgs(trailingOnly=TRUE) 
 gtspid <- args[1] 
-##gtspid <- "GTSP0568" 
+query_by <- "GTSP"
+sample_query <- gtspid
 
 if(!grepl("GTSP", gtspid)){
   sample_query <- gtspid
@@ -85,10 +86,10 @@ dbDisconnect(dbConn)
 rm(dbConn, junk)
 
 ## get all replicates 
-rep_list <- do.call(c, sapply(gtspid, function(x){
+rep_string <- do.call(c, lapply(gtspid, function(x){
   grep(x, allSampleName$sampleName, value = TRUE)
   }))
-replicates <- allSampleName[match(rep_list, allSampleName$sampleName),] 
+replicates <- allSampleName[match(rep_string, allSampleName$sampleName),] 
 stopifnot( nrow(replicates)>0 ) 
 
 ## get sampleInfo from specimen_management table
