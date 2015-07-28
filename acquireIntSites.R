@@ -4,10 +4,10 @@ stopifnot(all(sapply(rPackages, require, character.only=TRUE, quietly=TRUE, warn
 
 options(stringsAsFactors=F) 
 #' increase output width to console width 
-wideScreen <- function(howWide=as.numeric(strsplit(system('stty size', intern=T), ' ')[[1]])[2]) { 
-    options(width=as.integer(howWide)) 
- } 
- wideScreen() 
+#wideScreen <- function(howWide=as.numeric(strsplit(system('stty size', intern=T), ' ')[[1]])[2]) { 
+#    options(width=as.integer(howWide)) 
+# } 
+# wideScreen() 
 
 ## get argument 
 args <- commandArgs(trailingOnly=TRUE) 
