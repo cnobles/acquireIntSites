@@ -78,7 +78,7 @@ stopifnot(file.info("~/.my.cnf")$mode == as.octmode("600"))
 ## initialize connection to database 
 ## ~/.my.cnf must be present 
 junk <- sapply(dbListConnections(MySQL()), dbDisconnect) 
-dbConn <- dbConnect(MySQL(), group="intSitesDev237")  
+dbConn <- dbConnect(MySQL(), group="intsites_miseq.read")  
 stopifnot(dbGetQuery(dbConn, "SELECT 1")==1)
 
 allSampleName <- suppressWarnings( dbGetQuery(dbConn, "SELECT * FROM samples") ) 
@@ -116,7 +116,7 @@ sampleIDin <- sprintf("(%s)", paste(unique(replicates$sampleID), collapse=","))
 
 ##get unique sites 
 junk <- sapply(dbListConnections(MySQL()), dbDisconnect) 
-dbConn <- dbConnect(MySQL(), group="intSitesDev237")  
+dbConn <- dbConnect(MySQL(), group="intsites_miseq.read")  
 stopifnot(dbGetQuery(dbConn, "SELECT 1")==1) 
 
 sql <- paste("SELECT DISTINCT * 
